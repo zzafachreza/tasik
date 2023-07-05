@@ -1,1058 +1,474 @@
-import React, { useState } from 'react'
-import { Alert, Image, BackHandler, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { LeftArrow, SoalKeduaBAG1, SoalKeduaBAG2, SoalKeduaBAG3, SoalKeduaBAG4, SoalPertana } from '../../assets'
-import colors from '../../utils/colors'
-import { getData, storeData } from '../../utils/database'
-
-const OverviewQuiz = ({ navigation }) => {
-
-  const [skor, setSkor] = useState(0);
-
-
-  const [jawaban, setJawaban] = useState([
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-  ]);
-
-  const [pilih, setPilih] = useState(
-    [
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-      {
-        a: false,
-        b: false,
-        c: false,
-        d: false
-      },
-    ]
-  )
-
-  return (
-    <View style={{ flex: 1, backgroundColor: colors.primary }}>
-      <View style={{ padding: 10, backgroundColor: colors.secondary, width: '100%', height: 50 }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-
-          <TouchableOpacity onPress={() => navigation.goBack()} style={{ width: 20 }}>
-            <LeftArrow width={30} height={30} fill="white" />
-          </TouchableOpacity>
-          <Text style={{ color: 'white', fontFamily: 'Poppins-Regular', flex: 1, textAlign: 'center' }}>Overview Quiz</Text>
-        </View>
-
-
-      </View>
-      <ScrollView>
-        <View style={{ padding: 20, paddingTop: 50 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-            <Image style={{ width: 150, height: 50 }} source={SoalPertana} />
-          </View>
-          <View style={{ paddingTop: 10 }}>
-            <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>1. Potongan ayat di atas mengandung hukum bacaan</Text>
-          </View>
-
-          <>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[0] = 0;
-
-
-                let markers = [...pilih];
-                markers[0] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[0].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Ikhfa syafawi</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[0] = 1;
-
-
-
-
-                let markers = [...pilih];
-                markers[0] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[0].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Idzhar halqi </Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[0] = 0;
-
-
-                let markers = [...pilih];
-                markers[0] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[0].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Idgham bighunnah</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[0] = 0;
-
-
-                let markers = [...pilih];
-                markers[0] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[0].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Ikhfa haqiqi</Text>
-              </TouchableOpacity>
-            </View>
-          </>
-
-
-          <View style={{ paddingTop: 20 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>2.	Menurut pilihan di bawah ini, hukum bacaan ikhfa haqiqi dapat ditemui pada </Text>
-            </View>
-          </View>
-
-          <>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[1] = 1;
-
-
-                let markers = [...pilih];
-                markers[1] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[1].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10, top: 10 }}></View>
-                <Image style={{ width: 110, height: 40, left: 10 }} source={SoalKeduaBAG1} />
-              </TouchableOpacity>
-            </View>
-
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[1] = 0;
-
-
-                let markers = [...pilih];
-                markers[1] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[1].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10, top: 10 }}></View>
-                <Image style={{ width: 150, height: 40, left: 10 }} source={SoalKeduaBAG2} />
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[1] = 0;
-
-
-                let markers = [...pilih];
-                markers[1] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[1].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10, top: 10 }}></View>
-                <Image style={{ width: 156, height: 50, left: 10 }} source={SoalKeduaBAG3} />
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[1] = 0;
-
-
-                let markers = [...pilih];
-                markers[1] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[1].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10, top: 10 }}></View>
-                <Image style={{ width: 190, height: 40, left: 10 }} source={SoalKeduaBAG4} />
-              </TouchableOpacity>
-            </View>
-          </>
-
-          <View style={{ paddingTop: 20 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>3. Membaca al-quran dengan cepat, ringan, dan pendek namun tetap mengedepankan dan memakai peraturan tajwid adalah definisi dari</Text>
-            </View>
-          </View>
-
-          <>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[2] = 0;
-
-
-                let markers = [...pilih];
-                markers[2] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[2].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Hazramah</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[2] = 0;
-
-
-                let markers = [...pilih];
-                markers[2] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[2].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Tahqiq</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[2] = 1;
-
-
-                let markers = [...pilih];
-                markers[2] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[2].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Hadr</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[2] = 0;
-
-
-                let markers = [...pilih];
-                markers[2] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[2].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Tadwir</Text>
-              </TouchableOpacity>
-            </View>
-          </>
-
-          <View style={{ paddingTop: 0 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>4.	nun sukun <Text style={{ fontFamily: 'Amiri-Regular', fontSize: 20 }}>( نْ )</Text> atau tanwin <Text style={{ fontFamily: 'Amiri-Regular', fontSize: 20 }}>(ًٌٍ)</Text> bertemu dengan salah satu huruf: yâ’, nûn, mîm, wau, <Text style={{ fontFamily: 'Amiri-Regular', fontSize: 20 }}>( ي ن م و) </Text>merupakan pengertian dari hukum bacaan</Text>
-            </View>
-          </View>
-
-          <>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[3] = 0;
-
-
-                let markers = [...pilih];
-                markers[3] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[3].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>idgham bilagunnah</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[3] = 0;
-
-
-                let markers = [...pilih];
-                markers[3] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[3].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>iqlab</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[3] = 0;
-
-
-                let markers = [...pilih];
-                markers[3] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[3].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>ikhfa syafawi</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[3] = 1;
-
-
-                let markers = [...pilih];
-                markers[3] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[3].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>idgham bighunnah</Text>
-              </TouchableOpacity>
-            </View>
-          </>
-
-          <View style={{ paddingTop: 20 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>5.	berikut adalah huruf hijaiyah yang keluar dari bagian dalam tenggorokan, manakah yang benar</Text>
-            </View>
-          </View>
-          <>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[4] = 1;
-
-
-                let markers = [...pilih];
-                markers[4] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[4].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Amiri-Regular', fontSize: 20, textAlign: 'center', color: 'white', bottom: 25 }}>ع</Text>
-              </TouchableOpacity>
-            </View>
-
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 0 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[4] = 0;
-
-
-                let markers = [...pilih];
-                markers[4] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[4].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Amiri-Regular', fontSize: 20, textAlign: 'center', color: 'white', bottom: 20 }}>ق</Text>
-              </TouchableOpacity>
-            </View>
-
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 0 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[4] = 0;
-
-
-                let markers = [...pilih];
-                markers[4] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[4].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Amiri-Regular', fontSize: 20, textAlign: 'center', color: 'white', bottom: 25 }}>ص</Text>
-              </TouchableOpacity>
-            </View>
-
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 0 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[4] = 0;
-
-
-                let markers = [...pilih];
-                markers[4] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[4].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Amiri-Regular', fontSize: 20, textAlign: 'center', color: 'white', bottom: 20 }}>ف</Text>
-              </TouchableOpacity>
-            </View>
-          </>
-
-
-          <View style={{ paddingTop: 0, bottom: 30 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>6.	Apabila ada nun sukun <Text style={{ fontFamily: 'Amiri-Regular', fontSize: 20 }}>( نْ )</Text> atau tanwin  <Text style={{ fontFamily: 'Amiri-Regular', fontSize: 20 }}>( ًٌٍ )</Text> bertemu dengan huruf…. maka cara membacanya diubah menjadi mim dan disebut iqlab </Text>
-            </View>
-          </View>
-
-          <>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 0, bottom: 20 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[5] = 0;
-
-
-                let markers = [...pilih];
-                markers[5] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[5].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Amiri-Regular', fontSize: 20, textAlign: 'center', color: 'white', bottom: 20 }}>ق</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 0, bottom: 20 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[5] = 1;
-
-
-                let markers = [...pilih];
-                markers[5] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[5].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Amiri-Regular', fontSize: 20, textAlign: 'center', color: 'white', bottom: 20 }}>ب</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 0, bottom: 20 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[5] = 0;
-
-
-                let markers = [...pilih];
-                markers[5] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[5].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Amiri-Regular', fontSize: 20, textAlign: 'center', color: 'white', bottom: 18 }}>ل</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 0, bottom: 20 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[5] = 0;
-
-
-                let markers = [...pilih];
-                markers[5] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[5].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Amiri-Regular', fontSize: 20, textAlign: 'center', color: 'white', bottom: 24 }}>ع</Text>
-              </TouchableOpacity>
-            </View>
-          </>
-
-
-          <View style={{ paddingTop: 0, bottom: 30 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>7.	Bagaimana kah cara membaca idzhar?</Text>
-            </View>
-          </View>
-
-          <>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', bottom: 20 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[6] = 0;
-
-
-                let markers = [...pilih];
-                markers[6] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[6].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Dengung</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', bottom: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[6] = 0;
-
-
-                let markers = [...pilih];
-                markers[6] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[6].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Samar-samar</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', bottom: 0 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[6] = 1;
-
-
-                let markers = [...pilih];
-                markers[6] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[6].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Jelas</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', top: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[6] = 0;
-
-
-                let markers = [...pilih];
-                markers[6] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[6].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Dipanjangkan</Text>
-              </TouchableOpacity>
-            </View>
-
-          </>
-
-          <View style={{ paddingTop: 20 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>8.	Cara membaca harus diperpanjang sepanjang 2 harakat merupakan cara membaca dari</Text>
-            </View>
-          </View>
-
-          <>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[7] = 0;
-
-
-                let markers = [...pilih];
-                markers[7] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[7].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Iqlab</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[7] = 0;
-
-
-                let markers = [...pilih];
-                markers[7] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[7].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Idgham bigunnah</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[7] = 0;
-
-
-                let markers = [...pilih];
-                markers[7] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[7].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Ikhfa haqiqi</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[7] = 1;
-
-
-                let markers = [...pilih];
-                markers[7] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[7].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Mad thabi’ie</Text>
-              </TouchableOpacity>
-            </View>
-          </>
-
-          <View style={{ paddingTop: 20 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>9.	Tempat keluar huruf hijaiyah yang berasal dari rongga mulut disebut</Text>
-            </View>
-          </View>
-
-          <>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[8] = 0;
-
-
-                let markers = [...pilih];
-                markers[8] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[8].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Al lisan</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[8] = 0;
-
-
-                let markers = [...pilih];
-                markers[8] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[8].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Al-khaisyum</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[8] = 0;
-
-
-                let markers = [...pilih];
-                markers[8] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[8].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Al-halq</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[8] = 1;
-
-
-                let markers = [...pilih];
-                markers[8] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[8].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Al-jauf</Text>
-              </TouchableOpacity>
-            </View>
-
-          </>
-
-          <View style={{ paddingTop: 20 }}>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-              <Text style={{ fontFamily: 'Poppins-Regular', color: 'white' }}>10.	Tempat keluar huruf hijaiyah yang berasal dari tenggorokan disebut</Text>
-            </View>
-          </View>
-
-          <>
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[9] = 1;
-
-
-                let markers = [...pilih];
-                markers[9] = {
-                  a: true,
-                  b: false,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[9].a ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Al- halq</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[9] = 0;
-
-
-                let markers = [...pilih];
-                markers[9] = {
-                  a: false,
-                  b: true,
-                  c: false,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[9].b ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Al-lisan</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[9] = 0;
-
-
-                let markers = [...pilih];
-                markers[9] = {
-                  a: false,
-                  b: false,
-                  c: true,
-                  d: false
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[9].c ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Al-khaisyum</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', paddingTop: 10 }}>
-              <TouchableOpacity onPress={() => {
-                jawaban[9] = 0;
-
-
-                let markers = [...pilih];
-                markers[9] = {
-                  a: false,
-                  b: false,
-                  c: false,
-                  d: true
-                };
-                setPilih(markers)
-
-              }} style={{ flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <View style={{ padding: 10, backgroundColor: pilih[9].d ? '#000000' : '#dedede', borderRadius: 19, borderWidth: 1, height: 10, width: 10 }}></View>
-                <Text style={{ left: 10, fontFamily: 'Poppins-Regular', fontSize: 15, textAlign: 'center', top: 2, color: 'white' }}>Al-jauf</Text>
-              </TouchableOpacity>
-            </View>
-          </>
-
-        </View>
-
-        <TouchableOpacity onPress={() => {
-
-          let nilai = parseFloat(jawaban.reduce((a, b) => a + b, 0)) * 10;
-
-
-          getData('hasil').then(res => {
-            if (!res) {
-              storeData('hasil', {
-                nilai: nilai
-              });
-
-              Alert.alert('TASIK', `Nilai kamu : ` + nilai, [
-                {
-                  text: 'TUTUP',
-                  onPress: () => {
-                    navigation.goBack()
-                  }
-                }
-              ])
-
-            } else {
-              storeData('hasil', {
-                nilai: nilai
-              });
-              Alert.alert('TASIK', `Nilai sebelumnya ${res.nilai} \nNilai kamu sekarang : ` + nilai, [
-                {
-                  text: 'TUTUP',
-                  onPress: () => {
-                    navigation.goBack()
-                  }
-                }
-              ])
+import { SafeAreaView, StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { useIsFocused } from '@react-navigation/native';
+import axios from 'axios';
+import { APIUrl, getData, storeData } from '../../utils/database';
+import colors from '../../utils/colors';
+import RenderHtml from 'react-native-render-html';
+export default function OverviewQuiz({ navigation, route }) {
+
+  const isFocused = useIsFocused();
+  const [data, setData] = useState([]);
+  const [ragu, setRagu] = useState([])
+  const [betul, setBetul] = useState([]);
+  const [user, setUser] = useState({});
+  const [nomor, setNomor] = useState(0);
+  const [open, setOpen] = useState(false);
+  const [pilih, setPilih] = useState([]);
+  const [skor, setSkor] = useState([]);
+
+  useEffect(() => {
+    __getTransaction();
+  }, []);
+
+  const __getTransaction = () => {
+    axios.post(APIUrl + 'soal').then(res => {
+
+      console.log(res.data);
+
+      if (res.data.length > 0) {
+        res.data.map(i => {
+          skor.push(0);
+          ragu.push(false);
+          betul.push(false);
+          pilih.push(
+            {
+              a: false,
+              b: false,
+              c: false,
+              d: false
             }
-          })
+          )
+        })
+
+        setData(res.data);
+        setTimeout(() => {
+          setOpen(true);
+        }, 200)
+
+      } else {
+        Alert.alert(MYAPP, 'Soal Belum Ada !');
+
+      }
 
 
 
-        }} style={{
-          backgroundColor: colors.secondary,
-          padding: 10,
-          height: 50,
-          margin: 10,
+    })
+  }
+  const sendServer = () => {
+
+    let totalNilai = skor.reduce((a, b) => a + b, 0);
+
+
+    let nilai = (totalNilai / data.length) * 100;
+
+
+
+    getData('hasil').then(res => {
+      if (!res) {
+        storeData('hasil', {
+          nilai: nilai
+        });
+
+        Alert.alert('TASIK', `Nilai kamu : ` + nilai, [
+          {
+            text: 'TUTUP',
+            onPress: () => {
+              navigation.goBack()
+            }
+          }
+        ])
+
+      } else {
+        storeData('hasil', {
+          nilai: nilai
+        });
+        Alert.alert('TASIK', `Nilai sebelumnya ${res.nilai} \nNilai kamu sekarang : ` + nilai, [
+          {
+            text: 'TUTUP',
+            onPress: () => {
+              navigation.goBack()
+            }
+          }
+        ])
+      }
+    })
+
+
+  }
+  return (
+    <SafeAreaView style={{
+      flex: 1,
+    }}>
+      <View style={{
+        flex: 1,
+        justifyContent: 'center',
+
+        padding: 20,
+        backgroundColor: colors.black
+      }}>
+        {open && <View style={{
+          flex: 0.8,
           borderRadius: 10,
-          justifyContent: "center",
-          alignItems: 'center'
+          backgroundColor: colors.white,
+          padding: 10,
         }}>
-          <Text style={{
-            color: colors.white,
-            fontSize: 13,
-            fontFamily: 'Poppins-SemiBold',
-            textAlign: 'center'
-          }}>Lihat Nilai</Text>
-        </TouchableOpacity>
+          {/* SOAL */}
+          <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 14, left: 5, color: colors.black }}>JUMLAH SOAL ADA {data.length}</Text>
+          <View style={{
+            flexDirection: 'row',
+            borderBottomWidth: 1,
+            borderBottomColor: colors.secondary
+          }}>
+
+            <Text style={{ flex: 1, fontFamily: 'Poppins-SemiBold', fontSize: 20, color: colors.black }}> SOAL NOMOR <Text style={{ backgroundColor: colors.primary, color: colors.white, }}>  {data[nomor].nomor}  </Text></Text>
+
+
+          </View>
+
+          <View>
+
+
+            <RenderHtml
+              contentWidth={'100%'}
+              source={{
+                html: data[nomor].soal
+              }}
+            />
+
+
+            <TouchableOpacity
+
+              onPress={() => {
 
 
 
+                if (!pilih[nomor].a) {
+                  pilih[nomor] = { b: false, c: false, d: false, a: true };
+                  setPilih([...pilih])
 
-      </ScrollView>
+                  if (data[nomor].jawaban == 'A' && !betul[nomor]) {
+
+                    betul[nomor] = true;
+                    setBetul([...betul])
 
 
-    </View>
+                    skor[nomor] = 1;
+                  } else if (data[nomor].jawaban == 'A' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[nomor] - 1;
+                  } else if (data[nomor].jawaban !== 'A' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[nomor] - 1;
+                  }
+                } else {
+                  pilih[nomor] = { ...pilih[nomor], a: false };
+                  setPilih([...pilih])
+                  if (data[nomor].jawaban == 'A' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[0] - 1;
+                  }
+
+                }
+
+              }}
+
+              style={{ flexDirection: 'row', marginVertical: 5, position: 'relative', paddingLeft: 5 }}>
+
+              <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 14 }}>A. </Text>
+              {pilih[nomor].a && <View style={{
+                position: 'absolute',
+                left: 2,
+                top: -10
+              }}><Text style={{
+                fontSize: 30,
+                fontWeight: '600'
+              }}>X</Text></View>}
+              <RenderHtml
+                contentWidth={'100%'}
+                source={{
+                  html: data[nomor].a
+                }}
+              />
+
+            </TouchableOpacity>
+
+            <TouchableOpacity
+
+              onPress={() => {
+
+                if (!pilih[nomor].b) {
+                  pilih[nomor] = { a: false, c: false, d: false, b: true };
+                  setPilih([...pilih])
+                  if (data[nomor].jawaban == 'B' && !betul[nomor]) {
+                    betul[nomor] = true;
+                    setBetul([...betul])
+
+                    skor[nomor] = 1;
+                  } else if (data[nomor].jawaban == 'B' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[nomor] - 1;
+                  } else if (data[nomor].jawaban !== 'B' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[nomor] - 1;
+                  }
+                } else {
+                  pilih[nomor] = { ...pilih[nomor], b: false };
+                  setPilih([...pilih])
+                  if (data[nomor].jawaban == 'B' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[0] - 1;
+                  }
+
+                }
+
+              }}
+
+              style={{ flexDirection: 'row', marginVertical: 5, position: 'relative', paddingLeft: 5 }}>
+
+              <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 14 }}>B. </Text>
+              {pilih[nomor].b && <View style={{
+                position: 'absolute',
+                left: 2,
+                top: -10
+              }}><Text style={{
+                fontSize: 30,
+                fontWeight: '600'
+              }}>X</Text></View>}
+              <RenderHtml
+                contentWidth={'100%'}
+                source={{
+                  html: data[nomor].b
+                }}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+
+              onPress={() => {
+
+                if (!pilih[nomor].c) {
+                  pilih[nomor] = { b: false, a: false, d: false, c: true };
+                  setPilih([...pilih])
+                  if (data[nomor].jawaban == 'C' && !betul[nomor]) {
+                    betul[nomor] = true;
+                    setBetul([...betul])
+                    skor[nomor] = 1;
+                  } else if (data[nomor].jawaban == 'C' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[nomor] - 1;
+                  } else if (data[nomor].jawaban !== 'C' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[nomor] - 1;
+                  }
+                } else {
+                  pilih[nomor] = { ...pilih[nomor], c: false };
+                  setPilih([...pilih])
+                  if (data[nomor].jawaban == 'C' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[0] - 1;
+                  }
+
+                }
+
+              }}
+
+              style={{ flexDirection: 'row', marginVertical: 5, position: 'relative', paddingLeft: 5 }}>
+
+              <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 14 }}>C. </Text>
+              {pilih[nomor].c && <View style={{
+                position: 'absolute',
+                left: 2,
+                top: -10
+              }}><Text style={{
+                fontSize: 30,
+                fontWeight: '600'
+              }}>X</Text></View>}
+              <RenderHtml
+                contentWidth={'100%'}
+                source={{
+                  html: data[nomor].c
+                }}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+
+              onPress={() => {
+
+                if (!pilih[nomor].d) {
+                  pilih[nomor] = { b: false, c: false, a: false, d: true };
+                  setPilih([...pilih])
+                  if (data[nomor].jawaban == 'D' && !betul[nomor]) {
+                    betul[nomor] = true;
+                    setBetul([...betul])
+                    skor[nomor] = 1;
+                  } else if (data[nomor].jawaban == 'D' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[nomor] - 1;
+                  } else if (data[nomor].jawaban !== 'D' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[nomor] - 1;
+                  }
+                } else {
+                  pilih[nomor] = { ...pilih[nomor], d: false };
+                  setPilih([...pilih])
+                  if (data[nomor].jawaban == 'D' && betul[nomor]) {
+                    betul[nomor] = false;
+                    setBetul([...betul])
+                    skor[nomor] = skor[0] - 1;
+                  }
+
+                }
+
+              }}
+
+              style={{ flexDirection: 'row', marginVertical: 5, position: 'relative', paddingLeft: 5 }}>
+
+              <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 14 }}>D. </Text>
+              {pilih[nomor].d && <View style={{
+                position: 'absolute',
+                left: 2,
+                top: -10
+              }}><Text style={{
+                fontSize: 30,
+                fontWeight: '600'
+              }}>X</Text></View>}
+              <RenderHtml
+                contentWidth={'100%'}
+                source={{
+                  html: data[nomor].d
+                }}
+              />
+            </TouchableOpacity>
+
+          </View>
+
+        </View>}
+      </View>
+
+      <View style={{
+        padding: 10,
+        justifyContent: 'center',
+        alignItems: 'center'
+      }}>
+        {ragu[nomor] && <Text style={{ fontFamily: 'Poppins-SemiBold', fontSize: 20, color: colors.black }}>Ragu-ragu</Text>}
+      </View>
+      <View style={{
+        flexDirection: 'row',
+        height: 40,
+      }}>
+        <View style={{
+          flex: 1,
+          padding: 2,
+        }}>
+          {nomor > 0 && <TouchableOpacity onPress={() => {
+            // data.length
+            setNomor(nomor - 1);
+          }} style={{
+            padding: 5,
+            height: 40,
+            backgroundColor: colors.primary,
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}>
+
+            <Text style={{
+
+              fontFamily: 'Poppins-SemiBold',
+              color: colors.white,
+              fontSize: 12
+            }}>Soal Sebelumnya</Text>
+          </TouchableOpacity>}
+        </View>
+        <View style={{
+          flex: 0.8,
+          padding: 2,
+          height: 40,
+
+        }}>
+          <TouchableOpacity onPress={() => {
+            ragu[nomor] = true;
+            setRagu([...ragu])
+          }} style={{
+            padding: 5,
+            height: 40,
+            backgroundColor: colors.secondary,
+            justifyContent: 'center',
+            alignItems: 'center'
+
+          }}>
+
+            <Text style={{
+
+              fontFamily: 'Poppins-SemiBold',
+              color: colors.white,
+              fontSize: 12
+            }}>Ragu-ragu</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={{
+          flex: 1,
+          padding: 2,
+          height: 40,
+        }}>
+          {nomor < (data.length - 1) &&
+            <TouchableOpacity onPress={() => {
+              // data.length
+              setNomor(nomor + 1);
+            }} style={{
+              padding: 5,
+              height: 40,
+
+              backgroundColor: colors.primary,
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+
+              <Text style={{
+
+
+                fontFamily: 'Poppins-SemiBold',
+                color: colors.white,
+                fontSize: 12
+              }}>Soal Berikutnya</Text>
+
+            </TouchableOpacity>}
+
+          {nomor == (data.length - 1) &&
+            <TouchableOpacity onPress={sendServer} style={{
+              padding: 5,
+              height: 40,
+              flexDirection: 'row',
+              backgroundColor: colors.success,
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}>
+
+              <Text style={{
+
+
+                fontFamily: 'Poppins-SemiBold',
+                color: colors.white,
+                fontSize: 12
+              }}>Selesai</Text>
+
+            </TouchableOpacity>}
+        </View>
+      </View>
+    </SafeAreaView>
   )
 }
-
-export default OverviewQuiz
 
 const styles = StyleSheet.create({})

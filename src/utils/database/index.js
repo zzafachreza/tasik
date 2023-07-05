@@ -18,3 +18,5 @@ export const getData = async key => {
         // error reading value
     }
 };
+
+export const APIUrl = 'https://tasik.okeadmin.com/api/'
