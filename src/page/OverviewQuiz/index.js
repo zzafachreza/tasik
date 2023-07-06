@@ -121,7 +121,7 @@ export default function OverviewQuiz({ navigation, route }) {
             borderBottomColor: colors.secondary
           }}>
 
-            <Text style={{ flex: 1, fontFamily: 'Poppins-SemiBold', fontSize: 20, color: colors.black }}> SOAL NOMOR <Text style={{ backgroundColor: colors.primary, color: colors.white, }}>  {data[nomor].nomor}  </Text></Text>
+            <Text style={{ flex: 1, fontFamily: 'Poppins-SemiBold', fontSize: 20, color: colors.black }}> SOAL NOMOR <Text style={{ backgroundColor: colors.primary, color: colors.white, }}>  {nomor + 1}  </Text></Text>
 
 
           </View>
@@ -392,32 +392,7 @@ export default function OverviewQuiz({ navigation, route }) {
             }}>Soal Sebelumnya</Text>
           </TouchableOpacity>}
         </View>
-        <View style={{
-          flex: 0.8,
-          padding: 2,
-          height: 40,
 
-        }}>
-          <TouchableOpacity onPress={() => {
-            ragu[nomor] = true;
-            setRagu([...ragu])
-          }} style={{
-            padding: 5,
-            height: 40,
-            backgroundColor: colors.secondary,
-            justifyContent: 'center',
-            alignItems: 'center'
-
-          }}>
-
-            <Text style={{
-
-              fontFamily: 'Poppins-SemiBold',
-              color: colors.white,
-              fontSize: 12
-            }}>Ragu-ragu</Text>
-          </TouchableOpacity>
-        </View>
         <View style={{
           flex: 1,
           padding: 2,

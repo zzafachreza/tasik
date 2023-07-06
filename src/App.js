@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { EventRegister } from 'react-native-event-listeners';
 import themeContext from './config';
 import StackScreen from './routes/ScreenStack';
-import { StatusBar } from 'react-native';
+import { StatusBar, LogBox } from 'react-native';
 
 
 export default function App() {
@@ -21,6 +21,8 @@ export default function App() {
       }
     );
   })
+
+  LogBox.ignoreAllLogs();
 
   return (
 
