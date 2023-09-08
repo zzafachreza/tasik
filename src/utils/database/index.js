@@ -19,4 +19,4 @@ export const getData = async key => {
     }
 };
 
-export const APIUrl = 'https://tasik.okeadmin.com/api/'
+export const APIUrl = 'https://tajwidasik.online/api/'

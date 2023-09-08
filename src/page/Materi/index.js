@@ -94,6 +94,12 @@ const MateriScreen = ({ navigation, focused }) => {
                   </View>
                 </TouchableOpacity>
 
+                <TouchableOpacity onPress={() => navigation.navigate('PengucapanM2')}>
+                  <View style={{ padding: 10, backgroundColor: '#F7F7F7' }}>
+                    <Text style={{ fontFamily: 'Poppins-Regular', textAlign: 'justify' }}>Pengucapan</Text>
+                  </View>
+                </TouchableOpacity>
+
               </CollapseBody>
             </Collapse>
           </View>
@@ -130,6 +136,11 @@ const MateriScreen = ({ navigation, focused }) => {
                 <TouchableOpacity onPress={() => navigation.navigate('HalamanMad')}>
                   <View style={{ padding: 10, backgroundColor: '#F7F7F7' }}>
                     <Text style={{ fontFamily: 'Poppins-Regular', textAlign: 'justify' }}>Mad</Text>
+                  </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('PengucapanM3')}>
+                  <View style={{ padding: 10, backgroundColor: '#F7F7F7' }}>
+                    <Text style={{ fontFamily: 'Poppins-Regular', textAlign: 'justify' }}>Pengucapan</Text>
                   </View>
                 </TouchableOpacity>
               </CollapseBody>
