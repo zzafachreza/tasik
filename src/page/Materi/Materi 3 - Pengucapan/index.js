@@ -5,7 +5,7 @@ import colors from '../../../utils/colors'
 import SoundPlayer from 'react-native-sound-player'
 
 
-export default function PengucapanM3() {
+export default function PengucapanM3({ navigation }) {
 
     const data = [
         {
@@ -74,7 +74,7 @@ export default function PengucapanM3() {
             gambar: require('../../../assets/img/t13.jpg')
         },
         {
-            latin: 'Mt1AD WAJIB MUTTASHIL',
+            latin: 'MAD WAJIB MUTTASHIL',
             audio: 't14',
             gambar: require('../../../assets/img/t14.jpg')
         },

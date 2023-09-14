@@ -5,7 +5,7 @@ import colors from '../../../utils/colors'
 import SoundPlayer from 'react-native-sound-player'
 
 
-export default function PengucapanM2() {
+export default function PengucapanM2({ navigation }) {
 
 
 
